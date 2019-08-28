@@ -1,3 +1,22 @@
+## 基于官方1.8.1，新特性：
+1、添加了集合测试中的接口请求前，请求后的钩子脚本
+2、钩子脚本中注入了window，document对象
+3、钩子脚本中的context追加records字段（记录集合中接口运行的一些数据（query，body））
+tips: context对象下的一维对象都是暴露到脚本全局的，context.query = query.
+
+### 例子：
+1、测试集合下的某接口:
+![avatar](demo.png)
+2、点击集合中的开始运行按钮
+![avatar](demo2.png)
+
+### 使用场景：
+假设测试集合为： A -> B -> C
+1、根据A接口的响应数据（如：用户角色），通过自定义脚本修改context.query对象，确定下一个接口的参数
+2、联合A,B接口的数据（请求参数，响应数据），通过自定义脚本修改context对象，达到某些目的
+3、更多应用，自行探索
+
+
 ## YApi  可视化接口管理平台
 示例站点：
 <p><a target="_blank" href="http://yapi.demo.qunar.com">yapi.demo.qunar.com</a></p>
@@ -32,20 +51,10 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 
     npm install -g yapi-cli --registry https://registry.npm.taobao.org
     yapi server 
-    
-#### 服务管理
-利用pm2方便服务管理维护。
-
-    npm install pm2 -g  //安装pm2
-    cd  {项目目录}
-    pm2 start "vendors/server/app.js" --name yapi //pm2管理yapi服务
-    pm2 info yapi //查看服务信息
-    pm2 stop yapi //停止服务
-    pm2 restart yapi //重启服务
 
 #### 升级
 升级项目版本是非常容易的，并且不会影响已有的项目数据，只会同步 vendors 目录下的源码文件。
-    
+
     cd  {项目目录}
     yapi ls //查看版本号列表
     yapi update //更新到最新版本
