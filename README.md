@@ -1,7 +1,11 @@
 ## 基于官方1.8.1，新特性：
+
 1、添加了集合测试中的接口请求前，请求后的钩子脚本
+
 2、钩子脚本中注入了window，document对象
+
 3、钩子脚本中的context追加records字段（记录集合中接口运行的一些数据（query，body））
+
 tips: context对象下的一维对象都是暴露到脚本全局的，context.query = query.
 
 ### 例子：
